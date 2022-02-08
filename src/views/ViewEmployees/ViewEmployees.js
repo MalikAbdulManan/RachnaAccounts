@@ -62,9 +62,11 @@ BootstrapDialogTitle.propTypes = {
 };
 
 function ViewEmployees() {
+    const [data, showData] = useState({});
     const [employeeData, setemployeeData] = useState([
         {
             firstName: 'Nauman',
+            id: '1',
             Email: 'naumanjafar8012#gmail.com',
             Cnic: '3540213825193',
             Account: '05467900654103',
@@ -72,6 +74,7 @@ function ViewEmployees() {
         },
         {
             firstName: 'Asad',
+            id: '2',
             Email: '2018Cs428@student.gmail.com',
             Cnic: '111111111111',
             Account: '000000000000',
@@ -81,9 +84,13 @@ function ViewEmployees() {
 
     const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (id) => {
         setOpen(true);
+        // eslint-disable-next-line no-const-assign
+        const employeedata = employeeData.find((e) => e.id === id);
+        showData(employeedata);
     };
+    // console.log(employeeData);
     const handleClose = () => {
         setOpen(false);
     };
@@ -110,9 +117,9 @@ function ViewEmployees() {
                     </TableHead>
                     <TableBody>
                         {employeeData.map((employee) => (
-                            <TableRow>
+                            <TableRow key={employee.id}>
                                 <TableCell>
-                                    <LaunchIcon className="cursor-pointer" onClick={handleClickOpen} />
+                                    <LaunchIcon className="cursor-pointer" onClick={() => handleClickOpen(employee.id)} />
                                 </TableCell>
                                 <TableCell>{employee.firstName}</TableCell>
                                 <TableCell>{employee.Email}</TableCell>
@@ -126,9 +133,7 @@ function ViewEmployees() {
             </Paper>
             <div>
                 <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                    <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        Modal title
-                    </BootstrapDialogTitle>
+                    <BootstrapDialogTitle onClose={handleClose}>{data.firstName}</BootstrapDialogTitle>
                     <DialogContent dividers>
                         <Typography gutterBottom>
                             Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
