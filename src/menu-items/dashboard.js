@@ -2,6 +2,7 @@
 import { Add } from '@mui/icons-material';
 import { IconDashboard } from '@tabler/icons';
 import PersonIcon from '@mui/icons-material/Person';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 // constant
 const icons = { IconDashboard };
@@ -37,6 +38,14 @@ const dashboard = {
             type: 'item',
             url: '/dashboard/viewemployees',
             icon: PersonIcon,
+            breadcrumbs: false
+        },
+        {
+            id: 'sendemployeepay-page',
+            title: 'Send employee pay',
+            type: 'item',
+            url: '/dashboard/sendemployeepay',
+            icon: LocalAtmIcon,
             breadcrumbs: false
         }
     ]

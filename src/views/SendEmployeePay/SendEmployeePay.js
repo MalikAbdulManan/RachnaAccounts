@@ -65,7 +65,7 @@ BootstrapDialogTitle.propTypes = {
     onClose: PropTypes.func.isRequired
 };
 
-function ViewEmployees() {
+function SendEmployeePay() {
     const [data, showData] = useState({});
     const [employeeData, setemployeeData] = useState([
         {
@@ -80,22 +80,6 @@ function ViewEmployees() {
             firstName: 'Asad',
             id: '2',
             Email: '2018Cs428@student.gmail.com',
-            Cnic: '111111111111',
-            Account: '000000000000',
-            EmployeeCategory: 'A'
-        },
-        {
-            firstName: 'Manan',
-            id: '3',
-            Email: '2018Cs425@student.gmail.com',
-            Cnic: '111111111111',
-            Account: '000000000000',
-            EmployeeCategory: 'A'
-        },
-        {
-            firstName: 'Ammara',
-            id: '4',
-            Email: '2018Cs432@student.gmail.com',
             Cnic: '111111111111',
             Account: '000000000000',
             EmployeeCategory: 'A'
@@ -119,7 +103,7 @@ function ViewEmployees() {
             <AppBar className="mt-4" position="static">
                 <Toolbar className="h-32">
                     <Typography variant="h2">
-                        <div className="text-white">View Employees</div>
+                        <div className="text-white">Send Employee Pay</div>
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -127,25 +111,32 @@ function ViewEmployees() {
                 <Table className="mt-2">
                     <TableHead className="bg-gray-900">
                         <TableRow>
-                            <TableCell className="text-gray-200">Open</TableCell>
                             <TableCell className="text-gray-200">Name</TableCell>
                             <TableCell className="text-gray-200">Email</TableCell>
                             <TableCell className="text-gray-200">CNIC</TableCell>
                             <TableCell className="text-gray-200">Account No</TableCell>
                             <TableCell className="text-gray-200">Employee Category</TableCell>
+                            <TableCell className="text-gray-200">Select</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {employeeData.map((employee) => (
                             <TableRow key={employee.id}>
-                                <TableCell>
-                                    <LaunchIcon className="cursor-pointer" onClick={() => handleClickOpen(employee.id)} />
-                                </TableCell>
                                 <TableCell>{employee.firstName}</TableCell>
                                 <TableCell>{employee.Email}</TableCell>
                                 <TableCell>{employee.Cnic}</TableCell>
                                 <TableCell>{employee.Account}</TableCell>
                                 <TableCell>{employee.EmployeeCategory}</TableCell>
+                                <TableCell>
+                                    <Button
+                                        color="primary"
+                                        className="cursor-pointer"
+                                        onClick={() => handleClickOpen(employee.id)}
+                                        variant="contained"
+                                    >
+                                        Open
+                                    </Button>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -180,4 +171,4 @@ function ViewEmployees() {
         </div>
     );
 }
-export default ViewEmployees;
+export default SendEmployeePay;
