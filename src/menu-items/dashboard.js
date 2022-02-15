@@ -47,6 +47,14 @@ const dashboard = {
             url: '/dashboard/sendemployeepay',
             icon: LocalAtmIcon,
             breadcrumbs: false
+        },
+        {
+            id: 'verifypensioner-page',
+            title: 'Verify pensioner',
+            type: 'item',
+            url: '/dashboard/verifypensioner',
+            icon: LocalAtmIcon,
+            breadcrumbs: false
         }
     ]
 };
