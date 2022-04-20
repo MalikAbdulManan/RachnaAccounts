@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Link } from 'react-router-dom';
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
@@ -30,21 +31,27 @@ const Login = () => {
     }));
     return (
         <>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid container component="main" sx={{
+                height: '100vh', backgroundImage: `url('https://images.unsplash.com/photo-1497864149936-d3163f0c0f4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80')`,
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}>
                 <Grid
                     item
                     xs={false}
                     sm={4}
                     md={7}
-                    sx={{
-                        backgroundImage: `url('https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80')`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    }}
+                // sx={{
+                // backgroundImage: `url('https://cdn.vectorstock.com/i/1000x1000/85/86/salary-payment-isometric-color-accounting-vector-40978586.webp')`,
+                // backgroundRepeat: 'no-repeat',
+                // backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+                // backgroundSize: 'cover',
+                // backgroundPosition: 'center'
+                // }}
                 />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={5} elevation={6} square>
                     <Box
                         sx={{
                             my: 8,

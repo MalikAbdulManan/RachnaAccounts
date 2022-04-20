@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -25,7 +26,12 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Api } from '@mui/icons-material';
 // import ViewEmployeesModal from './viewEmployeesModal';
+import API from '../API/api';
+// import ReactHTMLTableToExcel from "react-html-table-to-excel";
+// import CsvDownload from 'react-json-to-csv'
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -68,39 +74,27 @@ BootstrapDialogTitle.propTypes = {
 function ViewEmployees() {
     const [data, showData] = useState({});
     const [employeeData, setemployeeData] = useState([
-        {
-            firstName: 'Nauman',
-            id: '1',
-            Email: 'naumanjafar8012#gmail.com',
-            Cnic: '3540213825193',
-            Account: '05467900654103',
-            EmployeeCategory: 'A'
-        },
-        {
-            firstName: 'Asad',
-            id: '2',
-            Email: '2018Cs428@student.gmail.com',
-            Cnic: '111111111111',
-            Account: '000000000000',
-            EmployeeCategory: 'A'
-        },
-        {
-            firstName: 'Manan',
-            id: '3',
-            Email: '2018Cs425@student.gmail.com',
-            Cnic: '111111111111',
-            Account: '000000000000',
-            EmployeeCategory: 'A'
-        },
-        {
-            firstName: 'Ammara',
-            id: '4',
-            Email: '2018Cs432@student.gmail.com',
-            Cnic: '111111111111',
-            Account: '000000000000',
-            EmployeeCategory: 'A'
-        }
+
     ]);
+
+    
+
+    useEffect(() => {
+        const view =async ()=>{
+            try{
+                
+                const res =await API.get('/employee');
+                console.log("response",res.data);
+                 setemployeeData(res.data.results);
+                
+            }
+            catch(error){
+                console.log(error)
+        }
+        }
+        view();
+        // setemployeeData(data);
+    }, []);
 
     const [open, setOpen] = React.useState(false);
 
@@ -121,10 +115,13 @@ function ViewEmployees() {
                     <Typography variant="h2">
                         <div className="text-white">View Employees</div>
                     </Typography>
+                    {/* <Button variant="contained" className="float-right">
+                        <CsvDownload data={employeeData} />
+                    </ Button> */}
                 </Toolbar>
             </AppBar>
             <Paper>
-                <Table className="mt-2">
+                <Table className="mt-2" id="emp-table">  
                     <TableHead className="bg-gray-900">
                         <TableRow>
                             <TableCell className="text-gray-200">Open</TableCell>
@@ -141,33 +138,73 @@ function ViewEmployees() {
                                 <TableCell>
                                     <LaunchIcon className="cursor-pointer" onClick={() => handleClickOpen(employee.id)} />
                                 </TableCell>
-                                <TableCell>{employee.firstName}</TableCell>
-                                <TableCell>{employee.Email}</TableCell>
-                                <TableCell>{employee.Cnic}</TableCell>
-                                <TableCell>{employee.Account}</TableCell>
-                                <TableCell>{employee.EmployeeCategory}</TableCell>
+                                <TableCell>{employee.name}</TableCell>
+                                <TableCell>{employee.email}</TableCell>
+                                <TableCell>{employee.cnic}</TableCell>
+                                <TableCell>{employee.accountNo}</TableCell>
+                                <TableCell>{employee.category}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
+
+                {/* <ReactHTMLTableToExcel
+                className="btn btn-info"
+                table="emp-table"
+                filename="Emp Excel File"
+                sheet="Sheet"
+                buttonText="Export of Excel"
+
+                /> */}
+
             </Paper>
             <div>
                 <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                     <BootstrapDialogTitle className="font-bold text-2xl" onClose={handleClose}>
-                        {data.firstName}
+                        {data.name}
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
                         <Typography gutterBottom>
-                            <EmailIcon /> {data.Email}
+                            Name: {data.name}
                         </Typography>
                         <Typography gutterBottom>
-                            <Grid3x3Icon /> {data.Cnic}
+                            Email: {data.email}
                         </Typography>
                         <Typography gutterBottom>
-                            <AccountBalanceIcon /> {data.Account}
+                            Scale: {data.scale}
                         </Typography>
                         <Typography gutterBottom>
-                            <ClassIcon /> {data.EmployeeCategory} Category
+                            Experience: {data.experience}
+                        </Typography>
+                        <Typography gutterBottom>
+                            Designation: {data.Designation}
+                        </Typography>
+                        <Typography gutterBottom>
+                            Department: {data.department}
+                        </Typography>
+                        <Typography gutterBottom>
+                            Type: {data.type}
+                        </Typography>
+                        <Typography gutterBottom>
+                            Category: {data.category}
+                        </Typography>
+                        {/* <Typography gutterBottom>
+                            EMAIL: {data.email}
+                        </Typography>
+                        <Typography gutterBottom>
+                            EMAIL: {data.email}
+                        </Typography>
+                        <Typography gutterBottom>
+                            EMAIL: {data.email}
+                        </Typography> */}
+                        <Typography gutterBottom>
+                            <Grid3x3Icon /> {data.cnic}
+                        </Typography>
+                        <Typography gutterBottom>
+                            <AccountBalanceIcon /> {data.accountNo}
+                        </Typography>
+                        <Typography gutterBottom>
+                            <ClassIcon /> {data.category}
                         </Typography>
                     </DialogContent>
                     <DialogActions>

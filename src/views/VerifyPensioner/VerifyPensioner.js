@@ -1,4 +1,3 @@
-import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -6,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
+import pic from 'assets/images/user.png';
 
 const VerifyPensioner = () => (
     <>
@@ -16,10 +16,10 @@ const VerifyPensioner = () => (
                 </Typography>
             </Toolbar>
         </AppBar>
-        <div className="content-center">
-            <Card className="justify-center" sx={{ maxWidth: 345 }}>
+        <div className="flex justify-center items-center pt-16">
+            <Card className="justify-center w-96">
                 <CardActionArea>
-                    <CardMedia component="img" height="140" image="/static/images/cards/contemplative-reptile.jpg" alt="green iguana" />
+                    <CardMedia component="img" height="60" image={pic} alt="green iguana" />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             Request Pensioner Fingerprint

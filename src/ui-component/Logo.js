@@ -1,5 +1,5 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import logo1 from 'assets/images/logo1.svg';
 
 // ==============================|| LOGO SVG ||============================== //

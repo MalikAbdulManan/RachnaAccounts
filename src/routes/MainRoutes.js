@@ -17,6 +17,7 @@ const AddEmployee = Loadable(lazy(() => import('views/AddNewEmployee/AddNewEmplo
 const ViewEmployees = Loadable(lazy(() => import('views/ViewEmployees/ViewEmployees')));
 const SendEmployeePay = Loadable(lazy(() => import('views/SendEmployeePay/SendEmployeePay')));
 const VerifyPensioner = Loadable(lazy(() => import('views/VerifyPensioner/VerifyPensioner')));
+const SearchRecords = Loadable(lazy(() => import('views/SearchRecords/SearchRecords')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -32,7 +33,7 @@ const MainRoutes = {
             element: <DashboardDefault />
         },
         {
-            path: '/dashboard/default',
+            path: '/dashboard',
             element: <DashboardDefault />
         },
         {
@@ -60,20 +61,32 @@ const MainRoutes = {
             element: <SamplePage />
         },
         {
-            path: '/dashboard/addemployee',
+            path: '/addemployee',
             element: <AddEmployee />
         },
         {
-            path: '/dashboard/viewemployees',
+            path: '/employee',
+            element: <AddEmployee />
+        },
+        {
+            path: '/employee/:id',
+            element: <AddEmployee />
+        },
+        {
+            path: '/viewemployees',
             element: <ViewEmployees />
         },
         {
-            path: '/dashboard/sendemployeepay',
+            path: '/sendemployeepay',
             element: <SendEmployeePay />
         },
         {
-            path: '/dashboard/verifypensioner',
+            path: '/verifypensioner',
             element: <VerifyPensioner />
+        },
+        {
+            path: '/user/searchrecords',
+            element: <SearchRecords />
         }
     ]
 };

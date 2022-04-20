@@ -3,6 +3,8 @@ import { Add } from '@mui/icons-material';
 import { IconDashboard } from '@tabler/icons';
 import PersonIcon from '@mui/icons-material/Person';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
+import ScreenSearchDesktopIcon from '@mui/icons-material/ScreenSearchDesktop';
 
 // constant
 const icons = { IconDashboard };
@@ -18,7 +20,7 @@ const dashboard = {
             id: 'default',
             title: 'Dashboard',
             type: 'item',
-            url: '/dashboard/default',
+            url: '/dashboard',
             icon: icons.IconDashboard,
             breadcrumbs: false
         },
@@ -27,7 +29,7 @@ const dashboard = {
             id: 'addemployee-page',
             title: 'Add employee',
             type: 'item',
-            url: '/dashboard/addemployee',
+            url: '/addemployee',
             icon: Add,
             breadcrumbs: false
         },
@@ -36,7 +38,7 @@ const dashboard = {
             id: 'viewemployees-page',
             title: 'View employees',
             type: 'item',
-            url: '/dashboard/viewemployees',
+            url: '/viewemployees',
             icon: PersonIcon,
             breadcrumbs: false
         },
@@ -44,7 +46,7 @@ const dashboard = {
             id: 'sendemployeepay-page',
             title: 'Send employee pay',
             type: 'item',
-            url: '/dashboard/sendemployeepay',
+            url: '/sendemployeepay',
             icon: LocalAtmIcon,
             breadcrumbs: false
         },
@@ -52,8 +54,16 @@ const dashboard = {
             id: 'verifypensioner-page',
             title: 'Verify pensioner',
             type: 'item',
-            url: '/dashboard/verifypensioner',
-            icon: LocalAtmIcon,
+            url: '/verifypensioner',
+            icon: FingerprintIcon,
+            breadcrumbs: false
+        },
+        {
+            id: 'searchrecords-page',
+            title: 'Search records',
+            type: 'item',
+            url: '/user/searchrecords',
+            icon: ScreenSearchDesktopIcon,
             breadcrumbs: false
         }
     ]

@@ -61,8 +61,8 @@ const FirebaseLogin = ({ ...others }) => {
 
     return (
         <>
-            <Grid container direction="column" justifyContent="right" spacing={2} className="flex float-right h-360">
-                <Grid item xs={12}>
+            <Grid container direction="column" justifyContent="center" spacing={2} className="flex float-center h-360">
+                {/* <Grid item xs={12}>
                     <AnimateButton>
                         <Button
                             disableElevation
@@ -82,8 +82,8 @@ const FirebaseLogin = ({ ...others }) => {
                             Sign in with Google
                         </Button>
                     </AnimateButton>
-                </Grid>
-                <Grid item xs={12}>
+                </Grid> */}
+                {/* <Grid item xs={12}>
                     <Box
                         sx={{
                             alignItems: 'right',
@@ -107,14 +107,14 @@ const FirebaseLogin = ({ ...others }) => {
                             disableRipple
                             disabled
                         >
-                            OR
+                            
                         </Button>
 
                         <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
                     </Box>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
-                    <Box sx={{ mb: 2 }}>
+                    <Box sx={{ mb: 0 }}>
                         <Typography variant="subtitle1">Sign in with Email address</Typography>
                     </Box>
                 </Grid>

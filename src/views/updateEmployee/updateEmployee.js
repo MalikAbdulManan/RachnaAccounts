@@ -15,8 +15,6 @@ import Select from '@mui/material/Select';
 import { makeStyles } from '@mui/styles';
 import ViewEmployees from '../ViewEmployees/ViewEmployees';
 import API from '../API/api';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,18 +22,16 @@ const useStyles = makeStyles((theme) => ({
     //     flexGrow: 1,
     // },
     btn: {
-        marginRight: theme.spacing(4)
+             marginRight: theme.spacing(4)
     },
     title: {
         flexGrow: 1
     }
 }));
-const AddNewEmployee = () => {
+const updateEmployee = () => {
     const classes = useStyles();
-    const params = useParams()
-    console.log('params.id', params.id)
     const [employee, setEmployee] = useState({
-
+        
         name: '',
         email: '',
         password: '',
@@ -79,7 +75,7 @@ const AddNewEmployee = () => {
         eidAdvance: 0,
         busCharges: 0,
         speciialIncentive: 0,
-
+      
         conveyanceAllowance: 0,
         integratedAllowance: 0,
         disableAllowance: 0,
@@ -89,53 +85,39 @@ const AddNewEmployee = () => {
         gIP: 0,
         recEidAdvance: 0,
         accomadationCharges: 0,
-
+      
         totalAmoluments: 0,
         totalDeductions: 0,
         netPayable: 0,
-    }); ''
-    const navigate = useNavigate();
-    const add = async () => {
-        let api
-        if (params.id) {
-            api = API.patch(`/employee/${params.id}`, employee);
-        } else {
-            api = API.post('/employee/add', employee);
+    });
+    const add =async ()=>{
+        try{
+            
+            const res= await API.patch("/employee/62533cbecc9b5985d5a78e31", employee)
+            setFlag(true);
+            
         }
-        try {
-
-            const response = await api;
-            console.log('response', response);
-            if(params.id){
-                navigate(`/sendemployeepay`);
-        }
-            else{
-                navigate(`/viewemployees`);
-            }
-
-
-        }
-        catch (error) {
+        catch(error){
             console.log(error)
-        }
-
     }
-
+    
+}
+   
 
     const [flag, setFlag] = useState(false);
 
     const employeeHandler = (e, type) => {
-
-        if (type === 'name') {
+       
+          if (type === 'name') {
             setEmployee({ ...employee, name: e.target.value });
         } else if (type === 'email') {
             setEmployee({ ...employee, email: e.target.value });
         } else if (type === 'password') {
             setEmployee({ ...employee, password: e.target.value });
         } else if (type === 'cnic') {
-            setEmployee({ ...employee, cnic: e.target.value.substring(0, 13) });
+            setEmployee({ ...employee, cnic: e.target.value });
         } else if (type === 'pageNo') {
-            setEmployee({ ...employee, pageNo: Number(e.target.value) });
+            setEmployee({ ...employee, pageNo: e.target.value });
         } else if (type === 'accountNo') {
             setEmployee({ ...employee, accountNo: e.target.value });
         } else if (type === 'department') {
@@ -231,13 +213,13 @@ const AddNewEmployee = () => {
         } else if (type === 'netPayable') {
             setEmployee({ ...employee, netPayable: e.target.value });
         }
-
-
-
-
+        
+        
+        
+        
 
     };
-
+    console.log(employee);
     // const ButtonHandler = async () => {
     //     try {
     //         const res = await Api.post('URL', employee);
@@ -248,31 +230,12 @@ const AddNewEmployee = () => {
     //     }
     // };
 
-
+    
 
     if (flag) {
         return <ViewEmployees employees={employee} />;
     }
     console.log(employee);
-
-
-    useEffect(() => {
-        if (params.id) {
-            const fetchData = async () => {
-                try {
-                    const response = await API.get(`/employee/${params.id}`);
-                    console.log('response', response);
-                    setEmployee(response.data);
-                } catch (error) {
-                    console.log('error', error);
-                }
-            };
-            fetchData();
-        }
-    }, [])
-
-    console.log('employee state', employee)
-
     return (
         <div
         // style={{
@@ -285,11 +248,10 @@ const AddNewEmployee = () => {
             <AppBar className="mt-4" position="static">
                 <Toolbar className="h-32">
                     <Typography variant="h2" className={classes.title}>
-                        <div className="text-white">{params.id ? "Update Employee" : "Add New Employee"}</div>
+                        <div className="text-white">Update Employee</div>
                     </Typography>
-
                     <Button onClick={add} size="medium" className="bg-blue-800 text-white hover:bg-blue-800 hover:text-white">
-                        {params.id ? "Update Data" : "Add Employee"}
+                        Update
                     </Button>
                 </Toolbar>
             </AppBar>
@@ -335,16 +297,12 @@ const AddNewEmployee = () => {
                             />
                         </Grid>
                         <Grid item xs={6} md={4}>
-                            <TextField inputProps={{
-                                maxLength: 13
-                            }}
-                                InputProps={{}}
+                            <TextField
                                 fullWidth
                                 value={employee.cnic}
                                 onChange={(e) => employeeHandler(e, 'cnic')}
                                 id="cnic"
                                 type="number"
-
                                 required
                                 label="CNIC"
                                 variant="standard"
@@ -374,7 +332,7 @@ const AddNewEmployee = () => {
                                 variant="standard"
                             />
                         </Grid>
-
+                       
                         <Grid item xs={6} md={4}>
                             <TextField
                                 fullWidth
@@ -399,7 +357,7 @@ const AddNewEmployee = () => {
                                 variant="standard"
                             />
                         </Grid>
-
+                        
                         <Grid item xs={6} md={4}>
                             <TextField
                                 fullWidth
@@ -547,7 +505,7 @@ const AddNewEmployee = () => {
                                 label="qualificationAllowance"
                                 variant="standard"
                             />
-                        </Grid>
+                        </Grid> 
                         <Grid item xs={6} md={4}>
                             <TextField
                                 fullWidth
@@ -951,4 +909,4 @@ const AddNewEmployee = () => {
     );
 };
 
-export default AddNewEmployee;
+export default updateEmployee;
